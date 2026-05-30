@@ -11,7 +11,6 @@ def generate_sensor_group():
             name="LivoxDriverNode",
             parameters={
                 "config_path": config_path,
-                "multi_topic": 0,
                 "publish_freq": 10,
                 "frame_id": "livox_frame"
             },

@@ -15,3 +15,7 @@ repos:
   - name: "global_localization"
     url: "https://github.com/Han-Yu-Meng/global_localization"
     branch: "main"
+  - name: "Fine_Serial"
+    url: "https://github.com/Han-Yu-Meng/Fines_Serial"
+    branch: "main"
+    

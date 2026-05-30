@@ -1,6 +1,7 @@
 from fins import Node, Group, LaunchDescription, Agent, DefaultSource
 from sensor import generate_sensor_group
 from local_localization import generate_fastlio_group
+from executor import generate_executor_group
 
 def generate_global_localization_group():
     return Group([
@@ -77,7 +78,8 @@ def generate_launch():
     return LaunchDescription(groups=[
         generate_sensor_group(),
         generate_fastlio_group(),
-        generate_global_localization_group()
+        generate_global_localization_group(),
+    	generate_executor_group()
     ])
 
 if __name__ == "__main__":
