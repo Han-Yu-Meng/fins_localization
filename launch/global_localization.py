@@ -85,6 +85,7 @@ if __name__ == "__main__":
         with DefaultSource("fins_localization"):
             ld = generate_launch()
         
-        agent.add_config("config/localize.yaml")
+        agent.add_config("config/fastlio_mid360.yaml")
+        agent.add_config("config/global_localization.yaml")
         agent.launch(ld)
         agent.spin()
