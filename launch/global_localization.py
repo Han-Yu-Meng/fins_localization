@@ -1,9 +1,9 @@
-from fins import Node, Group, LaunchDescription, Agent, DefaultSource
-from sensor import generate_sensor_group
-from local_localization import generate_fastlio_group
-from executor import generate_executor_group
+from fins import Node, Group, Agent, DefaultSource
+from sensor import sensor_group
+from local_localization import fastlio_group
+from executor import executor_group
 
-def generate_global_localization_group():
+def global_localization_group():
     return Group([
         Node(
             package="global_localization",
@@ -73,21 +73,20 @@ def generate_global_localization_group():
         ),
     ])
 
-def generate_launch():
+def launch():
     # 组合三部分：传感器 + 局部定位(FAST_LIO) + 全局定位
     return LaunchDescription(groups=[
-        generate_sensor_group(),
-        generate_fastlio_group(),
-        generate_global_localization_group(),
-    	generate_executor_group()
     ])
 
 if __name__ == "__main__":
     with Agent(name="GlobalLocalization", port=1896) as agent:
-        with DefaultSource("fins_localization"):
-            ld = generate_launch()
-        
         agent.add_config("config/fastlio_mid360.yaml")
         agent.add_config("config/global_localization.yaml")
-        agent.launch(ld)
+        with DefaultSource("fins_localization"):
+            agent.launch(
+                sensor_group(),
+                fastlio_group(),
+                global_localization_group(),
+                executor_group()
+            )
         agent.spin()

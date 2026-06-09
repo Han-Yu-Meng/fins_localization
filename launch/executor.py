@@ -1,6 +1,6 @@
 from fins import Node, Group
 
-def generate_executor_group():
+def executor_group():
     return Group([
         Node(
             package="ros_bridge",

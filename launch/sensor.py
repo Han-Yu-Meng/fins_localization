@@ -1,7 +1,7 @@
 from fins import Node, Group
 import os
 
-def generate_sensor_group():
+def sensor_group():
     DIR = os.path.dirname(os.path.abspath(__file__))
     config_path = os.path.join(DIR, "config", "MID360_config.json")
 

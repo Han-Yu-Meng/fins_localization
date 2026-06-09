@@ -1,8 +1,8 @@
-from fins import Node, Group, LaunchDescription, Agent, DefaultSource
-from sensor import generate_sensor_group
-from executor import generate_executor_group
+from fins import Node, Group, Agent, DefaultSource
+from sensor import sensor_group
+from executor import executor_group
 
-def generate_fastlio_group():
+def fastlio_group():
     return Group([
         Node(
             package="FAST_LIO",
@@ -67,17 +67,13 @@ def generate_fastlio_group():
         )
     ])
 
-def generate_launch():
-    return LaunchDescription(groups=[
-    	generate_sensor_group(),
-    	generate_fastlio_group(),
-    	generate_executor_group()
-    ])
-
 if __name__ == "__main__":
     with Agent(name="LocalLocalization", port=1896) as agent:
-        with DefaultSource("fins_localization"):
-            ld = generate_launch()
         agent.add_config("config/fastlio_mid360.yaml")
-        agent.launch(ld)
+        with DefaultSource("fins_localization"):
+            agent.launch(
+                sensor_group(),
+                fastlio_group(),
+                executor_group()
+            )
         agent.spin()
