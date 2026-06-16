@@ -24,10 +24,10 @@ GlobalLocalization:
   registered_leaf_size: 0.05
   
   # 精定位 GICP 寻找对应点时的最大距离平方阈值 (单位: 米^2，4.0 代表 2米)
-  max_dist_sq_fine: 0.5
+  max_dist_sq_fine: 1.5
   
   # GICP 配准允许的最大误差阈值，超过此值认为匹配无效并增加失败计数
-  max_gicp_error: 2000
+  max_gicp_error: 5000
   
   # 最终在可视化界面（global_map_viz）显示的地图采样粒度 (单位: 米)
   viz_leaf_size: 0.05
@@ -37,3 +37,8 @@ GlobalLocalization:
   
   # 全局 PCD 地图文件的绝对路径
   map_dir: "/home/fins/Map/YunJing_Indoor/map/map.pcd"
+  
+  tracking_interval: 2.0 # gicp 周期
+  smooth_enabled: true # 平滑 map->odom
+  smooth_alpha: 0.3 
+  planar_constraint: false # 平面约束

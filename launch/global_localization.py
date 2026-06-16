@@ -1,6 +1,6 @@
 from fins import Node, Group, Agent, DefaultSource
 from sensor import sensor_group
-from local_localization import fastlio_group
+from fastlio import fastlio_group
 from executor import executor_group
 
 def global_localization_group():
@@ -15,7 +15,8 @@ def global_localization_group():
             outputs={
                 "global_map_viz": "global/map_viz",
                 "aligned_cloud": "global/aligned_cloud",
-                "$T_{map}^{odom}$": "tf/map_to_odom"
+                "$T_{map}^{odom}$": "tf/map_to_odom",
+                "current_pose": "/current_pose"
             },
         ),
         
@@ -28,6 +29,16 @@ def global_localization_group():
             },
             inputs={
                 "transform": "tf/map_to_odom"
+            },
+        ),
+        Node(
+            package="ros_bridge",
+            name="PoseStampedPublisher",
+            parameters={
+                "topic": "/localization_pose"
+            },
+            inputs={
+                "msg": "/current_pose"
             },
         ),
         Node(
@@ -71,11 +82,6 @@ def global_localization_group():
                 "msg": "global/ros_aligned"
             },
         ),
-    ])
-
-def launch():
-    # 组合三部分：传感器 + 局部定位(FAST_LIO) + 全局定位
-    return LaunchDescription(groups=[
     ])
 
 if __name__ == "__main__":

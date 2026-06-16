@@ -13,6 +13,7 @@ FastLIO:
     use_imu_odometry: true                  # true = 输出imu里程计，false = 输出lidar里程计
     imu_window_size: 5                    # imu 滑动窗口大小
     imu_time_tolerance: 0
+    planar_constraint: false # 平面约束，强制设置 roll, pitch, z=0，一般不开
 
 
   preprocess:
