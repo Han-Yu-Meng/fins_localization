@@ -6,9 +6,6 @@ repos:
     Fine_Serial:
         url: https://github.com/Han-Yu-Meng/Fines_Serial
         version: main
-    finenav_terrain_map:
-        url: https://github.com/Han-Yu-Meng/finenav_terrain_map
-        version: main
     global_localization:
         url: https://github.com/Han-Yu-Meng/global_localization
         version: main
