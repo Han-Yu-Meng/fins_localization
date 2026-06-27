@@ -1,21 +1,23 @@
-name: "fins_localization"
+name: fins_localization
 repos:
-  livox_driver2:
-    url: "https://github.com/Han-Yu-Meng/livox_ros_driver2"
-    version: "master"
-  FAST_LIO:
-    url: "https://github.com/Han-Yu-Meng/FAST_LIO"
-    version: "main"
-  ros_bridge:
-    url: "https://github.com/Han-Yu-Meng/ros_bridge"
-    version: "main"
-  pointcloud_converter:
-    url: "https://github.com/Han-Yu-Meng/pointcloud_converter"
-    version: "main"
-  global_localization:
-    url: "https://github.com/Han-Yu-Meng/global_localization"
-    version: "main"
-  Fine_Serial:
-    url: "https://github.com/Han-Yu-Meng/Fines_Serial"
-    version: "main"
-    
+    FAST_LIO:
+        url: https://github.com/Han-Yu-Meng/FAST_LIO
+        version: main
+    Fine_Serial:
+        url: https://github.com/Han-Yu-Meng/Fines_Serial
+        version: main
+    finenav_terrain_map:
+        url: https://github.com/Han-Yu-Meng/finenav_terrain_map
+        version: main
+    global_localization:
+        url: https://github.com/Han-Yu-Meng/global_localization
+        version: main
+    livox_driver2:
+        url: https://github.com/Han-Yu-Meng/livox_ros_driver2
+        version: master
+    pointcloud_converter:
+        url: https://github.com/Han-Yu-Meng/pointcloud_converter
+        version: main
+    ros_bridge:
+        url: https://github.com/Han-Yu-Meng/ros_bridge
+        version: main
