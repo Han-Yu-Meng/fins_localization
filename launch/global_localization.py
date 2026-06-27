@@ -85,7 +85,7 @@ def global_localization_group():
     ])
 
 if __name__ == "__main__":
-    with Agent(name="GlobalLocalization", port=1896) as agent:
+    with Agent(name="global_localization") as agent:
         agent.add_config("config/fastlio_mid360.yaml")
         agent.add_config("config/global_localization.yaml")
         with DefaultSource("fins_localization"):

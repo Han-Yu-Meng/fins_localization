@@ -68,7 +68,7 @@ def fastlio_group():
     ])
 
 if __name__ == "__main__":
-    with Agent(name="LocalLocalization", port=1896) as agent:
+    with Agent(name="fastlio") as agent:
         agent.add_config("config/fastlio_mid360.yaml")
         with DefaultSource("fins_localization"):
             agent.launch(
