@@ -64,6 +64,12 @@ def fastlio_group():
                 "to_frame_override": "base_link"
             },
             inputs={"transform": "tf/odom_to_base_link"}
+        ),
+        Node(
+            package="ros_bridge",
+            name="OdometryPublisher",
+            parameters={"topic": "/Odometry"},
+            inputs={"msg": "lio/odometry"}
         )
     ])
 
