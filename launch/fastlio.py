@@ -45,18 +45,6 @@ def fastlio_group():
             outputs={"ros_cloud": "lio/ros_cloud"}
         ),
         Node(
-            package="ros_bridge",
-            name="PointCloudPublisher",
-            parameters={
-                "topic": "/cloud_registered",
-                "history": "Keep Last",
-                "depth": "10",
-                "reliability": "Reliable",
-                "durability": "Volatile",
-            },
-            inputs={"msg": "lio/ros_cloud"}
-        ),
-        Node(
             package="pointcloud_converter",
             name="PCL2ROS",
             inputs={"pcl_cloud": "lio/cloud_body"},
