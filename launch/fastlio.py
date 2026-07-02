@@ -41,12 +41,6 @@ def fastlio_group():
         Node(
             package="pointcloud_converter",
             name="PCL2ROS",
-            inputs={"pcl_cloud": "lio/cloud"},
-            outputs={"ros_cloud": "lio/ros_cloud"}
-        ),
-        Node(
-            package="pointcloud_converter",
-            name="PCL2ROS",
             inputs={"pcl_cloud": "lio/cloud_body"},
             outputs={"ros_cloud": "lio/ros_cloud_body"}
         ),
