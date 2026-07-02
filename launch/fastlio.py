@@ -29,7 +29,13 @@ def fastlio_group():
         Node(
             package="ros_bridge",
             name="PointCloudPublisher",
-            parameters={"topic": "/cloud_registered"},
+            parameters={
+                "topic": "/cloud_registered",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
+            },
             inputs={"msg": "lio/ros_cloud"}
         ),
         Node(
@@ -41,7 +47,13 @@ def fastlio_group():
         Node(
             package="ros_bridge",
             name="PointCloudPublisher",
-            parameters={"topic": "/cloud_registered"},
+            parameters={
+                "topic": "/cloud_registered",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
+            },
             inputs={"msg": "lio/ros_cloud"}
         ),
         Node(
@@ -53,7 +65,13 @@ def fastlio_group():
         Node(
             package="ros_bridge",
             name="PointCloudPublisher",
-            parameters={"topic": "/cloud_registered_body"},
+            parameters={
+                "topic": "/cloud_registered_body",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
+            },
             inputs={"msg": "lio/ros_cloud_body"}
         ),
         Node(
@@ -68,7 +86,13 @@ def fastlio_group():
         Node(
             package="ros_bridge",
             name="OdometryPublisher",
-            parameters={"topic": "/Odometry"},
+            parameters={
+                "topic": "/Odometry",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
+            },
             inputs={"msg": "lio/odometry"}
         )
     ])

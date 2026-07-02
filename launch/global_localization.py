@@ -35,7 +35,11 @@ def global_localization_group():
             package="ros_bridge",
             name="PoseStampedPublisher",
             parameters={
-                "topic": "/localization_pose"
+                "topic": "/localization_pose",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
             },
             inputs={
                 "msg": "/current_pose"
@@ -55,7 +59,11 @@ def global_localization_group():
             package="ros_bridge",
             name="PointCloudPublisher",
             parameters={
-                "topic": "/global_map"
+                "topic": "/global_map_viz",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Transient Local",
             },
             inputs={
                 "msg": "global/ros_map"
@@ -76,7 +84,11 @@ def global_localization_group():
             package="ros_bridge",
             name="PointCloudPublisher",
             parameters={
-                "topic": "/aligned_cloud"
+                "topic": "/aligned_cloud",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
             },
             inputs={
                 "msg": "global/ros_aligned"

@@ -6,7 +6,11 @@ def executor_group():
             package="ros_bridge",
             name="TwistSubscriber",
             parameters={
-            	"topic": "/cmd_vel"
+                "topic": "/cmd_vel",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
             },
             outputs={
                 "msg": "/cmd_vel"
