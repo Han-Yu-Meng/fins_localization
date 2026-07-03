@@ -1,7 +1,14 @@
+import os
+import sys
+import subprocess
+import signal
+
 from fins import Node, Group, Agent, DefaultSource
 from sensor import sensor_group
 from fastlio import fastlio_group
 from executor import executor_group
+
+MAP_SERVER_PROC = None
 
 def global_localization_group():
     return Group([
@@ -96,15 +103,54 @@ def global_localization_group():
         ),
     ])
 
+def _start_map_server():
+    """启动 map_server 子进程."""
+    global MAP_SERVER_PROC
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    map_server_script = os.path.join(script_dir, "map_server.py")
+    map_dir = os.environ.get(
+        "MAP_DIR", "/home/fins/Map/YunJing_Indoor/map"
+    )
+    topic = os.environ.get("MAP_TOPIC", "/map")
+
+    MAP_SERVER_PROC = subprocess.Popen(
+        [sys.executable, map_server_script, map_dir, topic],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    print(f"[global_localization] map_server 已启动 (pid={MAP_SERVER_PROC.pid})")
+
+
+def _stop_map_server():
+    """停止 map_server 子进程."""
+    global MAP_SERVER_PROC
+    if MAP_SERVER_PROC is not None:
+        print(f"[global_localization] 正在停止 map_server (pid={MAP_SERVER_PROC.pid})...")
+        MAP_SERVER_PROC.send_signal(signal.SIGINT)
+        try:
+            MAP_SERVER_PROC.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            MAP_SERVER_PROC.kill()
+            MAP_SERVER_PROC.wait()
+        MAP_SERVER_PROC = None
+
+
 if __name__ == "__main__":
-    with Agent(name="global_localization") as agent:
-        agent.add_config("config/fastlio_mid360.yaml")
-        agent.add_config("config/global_localization.yaml")
-        with DefaultSource("fins_localization"):
-            agent.launch(
-                sensor_group(),
-                fastlio_group(),
-                global_localization_group(),
-                executor_group()
-            )
-        agent.spin()
+    _start_map_server()
+    try:
+        with Agent(name="global_localization") as agent:
+            agent.add_config("config/fastlio_mid360.yaml")
+            agent.add_config("config/global_localization.yaml")
+            # agent.enable_timeline_monitor()
+            # agent.enable_debugging(full_backtrace=True)
+            with DefaultSource("fins_localization"):
+                agent.launch(
+                    sensor_group(),
+                    fastlio_group(),
+                    global_localization_group(),
+                    executor_group()
+                )
+            agent.spin()
+    finally:
+        _stop_map_server()

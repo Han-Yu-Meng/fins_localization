@@ -88,4 +88,5 @@ if __name__ == "__main__":
                 fastlio_group(),
                 executor_group()
             )
+        agent.enable_debugging(full_backtrace=True)
         agent.spin()
