@@ -144,7 +144,7 @@ if __name__ == "__main__":
             agent.add_config("config/global_localization.yaml")
             # agent.enable_timeline_monitor()
             # agent.enable_debugging(full_backtrace=True)
-            with DefaultSource("fins_localization"):
+            with DefaultSource():
                 agent.launch(
                     sensor_group(),
                     fastlio_group(),

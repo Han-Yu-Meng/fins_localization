@@ -1,20 +1,20 @@
 name: fins_localization
 repos:
-    FAST_LIO:
+    src/FAST_LIO:
         url: https://github.com/Han-Yu-Meng/FAST_LIO
         version: main
-    Fine_Serial:
+    src/Fine_Serial:
         url: https://github.com/Han-Yu-Meng/Fines_Serial
         version: main
-    global_localization:
+    src/global_localization:
         url: https://github.com/Han-Yu-Meng/global_localization
         version: main
-    livox_driver2:
+    src/livox_driver2:
         url: https://github.com/Han-Yu-Meng/livox_ros_driver2
         version: master
-    pointcloud_converter:
+    src/pointcloud_converter:
         url: https://github.com/Han-Yu-Meng/pointcloud_converter
         version: main
-    ros_bridge:
+    src/ros_bridge:
         url: https://github.com/Han-Yu-Meng/ros_bridge
         version: main
