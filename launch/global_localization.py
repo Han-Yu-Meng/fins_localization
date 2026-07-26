@@ -57,7 +57,7 @@ def global_localization_group():
             package="ros_bridge",
             name="PoseWithCovarianceStampedPublisher",
             parameters={
-                "topic": "/initial_pose",
+                "topic": "/initialpose",
                 "history": "Keep Last",
                 "depth": "10",
                 "reliability": "Reliable",
