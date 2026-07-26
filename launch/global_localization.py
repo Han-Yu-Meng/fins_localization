@@ -23,10 +23,11 @@ def global_localization_group():
                 "global_map_viz": "global/map_viz",
                 "aligned_cloud": "global/aligned_cloud",
                 "$T_{map}^{odom}$": "tf/map_to_odom",
-                "current_pose": "/current_pose"
+                "current_pose": "/current_pose",
+                "initial_pose": "/initial_pose"
             },
         ),
-        
+
         Node(
             package="ros_bridge",
             name="TFBroadcaster",
@@ -40,7 +41,7 @@ def global_localization_group():
         ),
         Node(
             package="ros_bridge",
-            name="PoseStampedPublisher",
+            name="PoseWithCovarianceStampedPublisher",
             parameters={
                 "topic": "/localization_pose",
                 "history": "Keep Last",
@@ -50,6 +51,20 @@ def global_localization_group():
             },
             inputs={
                 "msg": "/current_pose"
+            },
+        ),
+        Node(
+            package="ros_bridge",
+            name="PoseWithCovarianceStampedPublisher",
+            parameters={
+                "topic": "/initial_pose",
+                "history": "Keep Last",
+                "depth": "10",
+                "reliability": "Reliable",
+                "durability": "Volatile",
+            },
+            inputs={
+                "msg": "/initial_pose"
             },
         ),
         Node(

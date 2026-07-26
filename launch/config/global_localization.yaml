@@ -40,5 +40,6 @@ GlobalLocalization:
   
   tracking_interval: 2.0 # gicp 周期
   smooth_enabled: true # 平滑 map->odom
-  smooth_alpha: 0.3 
+  smooth_alpha: 0.3
+  pose_trigger: "tf" # "tf" = publish every odom callback, "gicp" = publish only when GICP updates
   planar_constraint: false # 平面约束
