@@ -6,7 +6,6 @@ import signal
 from fins import Node, Group, Agent, DefaultSource
 from sensor import sensor_group
 from fastlio import fastlio_group
-from executor import executor_group
 
 MAP_SERVER_PROC = None
 
@@ -157,14 +156,13 @@ if __name__ == "__main__":
         with Agent(name="global_localization") as agent:
             agent.add_config("config/fastlio_mid360.yaml")
             agent.add_config("config/global_localization.yaml")
-            # agent.enable_timeline_monitor()
+            agent.enable_timeline_monitor()
             # agent.enable_debugging(full_backtrace=True)
             with DefaultSource():
                 agent.launch(
                     sensor_group(),
                     fastlio_group(),
-                    global_localization_group(),
-                    executor_group()
+                    global_localization_group()
                 )
             agent.spin()
     finally:

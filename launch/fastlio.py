@@ -1,6 +1,5 @@
 from fins import Node, Group, Agent, DefaultSource
 from sensor import sensor_group
-from executor import executor_group
 
 def fastlio_group():
     return Group([
@@ -85,8 +84,9 @@ if __name__ == "__main__":
         with DefaultSource():
             agent.launch(
                 sensor_group(),
-                fastlio_group(),
-                executor_group()
+                fastlio_group()
             )
+            
         agent.enable_debugging(full_backtrace=True)
+        agent.enable_performance_monitor()
         agent.spin()

@@ -3,9 +3,6 @@ repos:
     src/FAST_LIO:
         url: https://github.com/Han-Yu-Meng/FAST_LIO
         version: main
-    src/Fine_Serial:
-        url: https://github.com/Han-Yu-Meng/Fines_Serial
-        version: main
     src/global_localization:
         url: https://github.com/Han-Yu-Meng/global_localization
         version: main
